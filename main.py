@@ -1,10 +1,9 @@
-
+import requests
 from translate import Translator
 import googletrans
 from langdetect import detect
 import pandas as pd
 import recommendation
-from PyDictionary import PyDictionary
 
 
 def create_hinglish_translation(english_text):
@@ -29,7 +28,6 @@ def hindi_to_english(text):
     return translation
 
 def translate_hindi_to_english(hindi_word):
-
   translator = googletrans.Translator()
   translation = translator.translate(hindi_word, src='hi', dest='en')
   return translation.text
@@ -42,7 +40,7 @@ def translate_to_hindi(text):
 
 if __name__ == "__main__":
     english_statements = [
-        "I was sending email to teacher in college from my phone to tell the teacher that doctor died in school"
+        "I was waiting for my bag"
     ]
     
     train_x_data = pd.read_csv('static/train_x.csv')['restaurant'].tolist()
@@ -53,9 +51,7 @@ if __name__ == "__main__":
     whole = []
     for statement in english_statements:
         hinglish_translation = translate_to_hindi(statement)
-        #print(hinglish_translation)
         hinglish_translation_list = hinglish_translation.split(" ")
-        #print(hinglish_translation_list)
         res = ""
         for item in hinglish_translation_list:
             hindi_item = translate_hindi_to_english(item)
