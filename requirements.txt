@@ -1,0 +1,5 @@
+translate
+langdetect
+pandas
+recommendation
+googletrans
